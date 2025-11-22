@@ -10,7 +10,16 @@
  */
 class Solution {
 public:
- 
+ void addnode(ListNode *&heads, ListNode *&temps , ListNode *&ttemp){
+    if(heads==NULL){
+        heads=temps;
+        ttemp=temps;
+    }
+    else{
+        ttemp->next=temps;
+        ttemp=ttemp->next;
+    }
+ }
     ListNode* oddEvenList(ListNode* head) {
         if(head==NULL )return head;
         if(head->next==NULL)return head;
@@ -21,27 +30,14 @@ public:
         ListNode *otemp,*etemp;
         while(temp){
             if(increment%2==0){
-                if(ehead==NULL){
-                    ehead=temp;
-                    etemp=temp;
-                }
-                else{
-                    etemp->next=temp;
-                    etemp=etemp->next;
-                    
-                }
+                
+                addnode(ehead,temp,etemp);
                 temp=temp->next;
                 increment++;
             }
             else{
-                if(ohead==NULL){
-                    ohead=temp;
-                    otemp=temp;
-                }
-                else{
-                    otemp->next=temp;
-                    otemp=otemp->next;
-                }
+               
+                 addnode(ohead,temp,otemp);
                 temp=temp->next;
                 increment++;
             }
